@@ -10,13 +10,6 @@ resource "azuread_application_registration" "this" {
   group_membership_claims = var.group_membership_claims
 }
 
-resource "azuread_application_owner" "this" {
-  for_each = { for index, owner in local.owners : owner => owner }
-
-  application_id  = azuread_application_registration.this.id
-  owner_object_id = each.value
-}
-
 resource "azuread_application_redirect_uris" "web" {
   count = length(var.web_redirect_uris) > 0 ? 1 : 0
 
