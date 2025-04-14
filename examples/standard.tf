@@ -50,15 +50,19 @@ resource "azuread_user" "user4" {
 module "example_sp" {
   source = "../"
 
+  naming_convention = "gc"
+  user_defined      = "example"
+
   azure_resource_attributes = {
-    project     = "aur"
-    environment = "dev"
-    location    = "Canada Central"
-    instance    = 0
+    department_code = "Gc"
+    owner           = "ABC"
+    project         = "aur"
+    environment     = "dev"
+    location        = "Canada Central"
+    instance        = 0
   }
 
-  user_defined = "test"
-  owners       = [data.azuread_client_config.this.object_id]
+  owners = [data.azuread_client_config.this.object_id]
 
   web_redirect_uris       = ["https://login.live.com/oauth20_desktop.srf"]
   group_membership_claims = ["ApplicationGroup"]

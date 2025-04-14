@@ -3,7 +3,7 @@
 ###################
 
 resource "azuread_application_registration" "this" {
-  display_name = var.user_defined != null ? "${module.azure_resource_prefixes.service_principal_prefix}-${var.user_defined}" : module.azure_resource_prefixes.service_principal_prefix
+  display_name = var.user_defined != null ? "${module.azure_resource_names.service_principal_name}-${var.user_defined}" : module.azure_resource_names.service_principal_name
   description  = var.description
   notes        = var.notes
 
