@@ -96,4 +96,12 @@ module "example_sp" {
       }
     }
   }
+
+  api_permissions = {
+    graph = {
+      api_client_id = "00000003-0000-0000-c000-000000000000"
+      role_names    = ["Group.Read.All", "User.Read.All"]
+      scope_names   = ["User.ReadWrite"]
+    }
+  }
 }

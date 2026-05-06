@@ -93,6 +93,31 @@ resource "azuread_application_app_role" "this" {
   value                = each.value.value
 }
 
+### API Access ###
+
+data "azuread_service_principal" "apis" {
+  for_each = var.api_permissions
+
+  client_id = each.value.api_client_id
+}
+
+resource "azuread_application_api_access" "this" {
+  for_each = var.api_permissions
+
+  application_id = azuread_application_registration.this.id
+  api_client_id  = each.value.api_client_id
+
+  role_ids = [
+    for role_name in each.value.role_names :
+    data.azuread_service_principal.apis[each.key].app_role_ids[role_name]
+  ]
+
+  scope_ids = [
+    for scope_name in each.value.scope_names :
+    data.azuread_service_principal.apis[each.key].oauth2_permission_scope_ids[scope_name]
+  ]
+}
+
 #########################
 ### Service Principal ###
 #########################
