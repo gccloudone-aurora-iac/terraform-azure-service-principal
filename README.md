@@ -52,3 +52,5 @@ Examples for this module along with various configurations can be found in the [
 | ---------- | ------- | ----------------------------------------------------------------------------------- |
 | 2025-01-25 | v1.0.0  | initial commit                                                                      |
 | 2025-10-20 | v2.0.1  | Pin minimum version of azurerm to 4.49.0                                            |
+| 2026-05-06 | v2.1.0  | Add API permissions                         |
+
