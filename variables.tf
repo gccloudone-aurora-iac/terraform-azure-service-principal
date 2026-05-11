@@ -115,3 +115,13 @@ variable "optional_claims" {
   })
   default = null
 }
+
+variable "api_permissions" {
+  description = "API permissions to grant to the application registration."
+  type = map(object({
+    api_client_id = string
+    role_names    = optional(list(string), [])
+    scope_names   = optional(list(string), [])
+  }))
+  default = {}
+}
